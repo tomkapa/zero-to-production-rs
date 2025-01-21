@@ -1,0 +1,33 @@
+[package]
+name = "zero-to-production-rs"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+path = "src/main.rs"
+name = "zero-to-production"
+
+[dependencies]
+actix-web = { version = "4.9.0" }
+tracing = { version = "0.1.41" }
+tracing-subscriber = { version = "0.3", features = ["registry", "env-filter"] }
+tracing-bunyan-formatter = "0.3.1"
+serde = { version = "1.0.217", features = ["derive"] }
+sqlx = { version = "0.8.3", default-features = false, features = [
+    "runtime-tokio-rustls",
+    "macros",
+    "postgres",
+    "uuid",
+    "chrono",
+    "migrate",
+] }
+config = { version = "0.15.6", default-features = false, features = ["yaml"] }
+tokio = { version = "1.43.0", features = ["macros", "rt-multi-thread"] }
+secrecy = {version = "0.10.3", features = ["serde"] }
+serde-aux = "4.5.0"
+anyhow = "1.0.95"
+reqwest = {version = "0.12.12", features = ["cookies"]}
+uuid = {version = "1.12.1", features = ["v4"]}
