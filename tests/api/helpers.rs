@@ -6,8 +6,11 @@ use zero_to_production_rs::startup::{get_connection_pool, Application};
 
 pub struct TestApp {
     pub address: String,
+    #[allow(dead_code)]
     pub port: u16,
+    #[allow(dead_code)]
     pub db_pool: PgPool,
+    #[allow(dead_code)]
     pub api_client: reqwest::Client,
 }
 
