@@ -3,9 +3,15 @@ use std::fmt::{Debug, Display};
 use tokio::task::JoinError;
 use zero_to_production_rs::configuration;
 use zero_to_production_rs::startup::Application;
+use zero_to_production_rs::telemetry::{get_subscriber, init_subscriber};
 
 #[tokio::main]
 async fn main() -> Result<()> {
+    // tracing setup
+    let subscriber = get_subscriber("zero2prod".into(), "info".into(), std::io::stdout);
+    init_subscriber(subscriber);
+
+    // application setup
     let configuration = configuration::get_configuration().expect("Failed to read configuration.");
     let application = Application::build(configuration).await?;
 
